@@ -19,7 +19,6 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           release-type: node
-          skip-github-release: false
           
       - name: Checkout code
         if: ${{ steps.release.outputs.release_created }}
