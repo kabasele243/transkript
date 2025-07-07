@@ -6,49 +6,39 @@ on:
       - main
 
 jobs:
-  release:
+  release-please:
     runs-on: ubuntu-latest
     permissions:
       contents: write
       pull-requests: write
     
     steps:
+      - name: Release Please
+        uses: google-github-actions/release-please-action@v4
+        id: release
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          release-type: node
+          
       - name: Checkout code
+        if: ${{ steps.release.outputs.release_created }}
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: Setup Node.js
+        if: ${{ steps.release.outputs.release_created }}
         uses: actions/setup-node@v4
         with:
           node-version: '18'
           cache: 'npm'
 
       - name: Install dependencies
+        if: ${{ steps.release.outputs.release_created }}
         run: npm ci
 
       - name: Run tests and build
+        if: ${{ steps.release.outputs.release_created }}
         run: |
           npm run lint
           npm run build
-
-      - name: Bump version and create tag
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          npm version patch
-          git push --follow-tags
-
-      - name: Get package version
-        id: package-version
-        run: echo "version=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
-
-      - name: Create Release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: v${{ steps.package-version.outputs.version }}
-          release_name: Release v${{ steps.package-version.outputs.version }}
-          draft: false
-          prerelease: false
