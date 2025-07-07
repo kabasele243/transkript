@@ -6,7 +6,11 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "release": "npm run build && npm run lint && npm version patch && git push --follow-tags",
+    "release:minor": "npm run build && npm run lint && npm version minor && git push --follow-tags",
+    "release:major": "npm run build && npm run lint && npm version major && git push --follow-tags",
+    "prerelease": "npm run build && npm run lint"
   },
   "dependencies": {
     "react": "^19.0.0",

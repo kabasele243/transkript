@@ -29,6 +29,50 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
+## Release Process
+
+This project uses semantic versioning and automated releases.
+
+### Creating a Release
+
+1. **Patch Release** (bug fixes):
+   ```bash
+   npm run release
+   ```
+
+2. **Minor Release** (new features):
+   ```bash
+   npm run release:minor
+   ```
+
+3. **Major Release** (breaking changes):
+   ```bash
+   npm run release:major
+   ```
+
+These commands will:
+- Run tests and linting
+- Build the project
+- Bump the version number
+- Create a git tag
+- Push changes and tags to remote
+- Trigger automated release workflow
+
+### Manual Release Steps
+
+If you need to create a release manually:
+
+1. Ensure all changes are committed
+2. Run tests: `npm run lint && npm run build`
+3. Update version: `npm version [patch|minor|major]`
+4. Push with tags: `git push --follow-tags`
+
+### Automated Releases
+
+The project includes GitHub Actions workflows:
+- **CI**: Runs on every push/PR to main
+- **Release**: Triggers on version tags to create GitHub releases
+
 ## Deploy on Vercel
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
