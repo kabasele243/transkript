@@ -71,7 +71,7 @@ If you need to create a release manually:
 
 The project includes GitHub Actions workflows:
 - **CI**: Runs on every push/PR to main
-- **Release**: Triggers on version tags to create GitHub releases
+- **Release**: Triggers on every push to main branch - automatically bumps version and creates GitHub releases
 
 ## Deploy on Vercel
 
