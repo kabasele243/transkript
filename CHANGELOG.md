@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.6](https://github.com/kabasele243/transkript/compare/v0.1.5...v0.1.6) (2025-07-07)
+
+
+### Bug Fixes
+
+* major update ([59a636a](https://github.com/kabasele243/transkript/commit/59a636a02eca4f96638fcbd498029bc0e99fc76a))
+* major update ([03530fd](https://github.com/kabasele243/transkript/commit/03530fd8698595daa4a2bc06d3859f0e00d8b39e))
+
 ## [0.1.5](https://github.com/kabasele243/transkript/compare/v0.1.4...v0.1.5) (2025-07-07)
 
 
